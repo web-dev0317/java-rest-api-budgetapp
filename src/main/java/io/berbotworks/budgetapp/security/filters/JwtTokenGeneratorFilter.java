@@ -33,7 +33,7 @@ public class JwtTokenGeneratorFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null) {
-            var userDetails = (BudgetAppUserDetails) authentication.getPrincipal();
+            BudgetAppUserDetails userDetails = (BudgetAppUserDetails) authentication.getPrincipal();
             log.debug("uid {}", userDetails.getUid());
             SecretKey key = Keys.hmacShaKeyFor(JWT_KEY.getBytes(StandardCharsets.UTF_8));
             String jwt = Jwts.builder()

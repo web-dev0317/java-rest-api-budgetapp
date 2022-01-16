@@ -10,7 +10,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 public class CorsConfigurationSourceImpl implements CorsConfigurationSource {
     @Override
     public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
-        var corsConfig = new CorsConfiguration();
+        CorsConfiguration corsConfig = new CorsConfiguration();
         corsConfig.setAllowedOrigins(Collections.singletonList("http://localhost:8080"));
         corsConfig.setAllowedHeaders(Collections.singletonList("*"));
         corsConfig.setAllowCredentials(true);

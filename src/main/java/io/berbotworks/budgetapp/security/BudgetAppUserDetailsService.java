@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import io.berbotworks.budgetapp.models.User;
 import io.berbotworks.budgetapp.services.UserService;
 import lombok.RequiredArgsConstructor;
 
@@ -16,7 +17,7 @@ public class BudgetAppUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        var user = userService.findByEmail(email);
+        User user = userService.findByEmail(email);
         if (user == null) {
             throw new UsernameNotFoundException("User with " + email + " doesn't exist");
         }
