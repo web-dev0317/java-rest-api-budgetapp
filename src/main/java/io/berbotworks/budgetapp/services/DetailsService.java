@@ -106,7 +106,7 @@ public class DetailsService {
     public Expense deleteExpense(Long uid, Long expenseId) {
         Optional<Expense> e = expenseRepository.findById(expenseId);
 
-        if (e.isEmpty()) {
+        if (!e.isPresent()) {
             throw new ExpenseNotFoundException(new StringBuilder()
                     .append("Expense with id ")
                     .append(expenseId)
