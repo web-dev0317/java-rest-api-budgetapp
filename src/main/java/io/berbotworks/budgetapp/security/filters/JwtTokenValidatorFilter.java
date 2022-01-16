@@ -14,7 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.security.authentication.BadCredentialsException;
+// import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -57,7 +57,10 @@ public class JwtTokenValidatorFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(auth);
             } catch (Exception e) {
                 log.debug("exception message {}", e.getMessage());
-                throw new BadCredentialsException("Invalid token!");
+                log.debug("Invalid token");
+                response.setStatus(401);
+                return;
+                // throw new BadCredentialsException("Invalid token!");
             }
         }
         filterChain.doFilter(request, response);
